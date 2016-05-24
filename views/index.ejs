@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html ng-app="openparty">
+  <head>
+    <meta charset="utf-8">
+<title>Mafia</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  </head>
+  <body ng-controller="controller" class="ng-cloak" style="background-image: url(images/fon1.jpg)">
+
+    <div class="container" style="background-image: url(images/dark_dotted2.png)" ng-show="status == 0">
+ <h1>Добро пожаловать семью!</h1>
+ <h2>Кодекс чести мафии</h2>
+ <h4><li>Есть только одна причина покинуть семью – смерть.</li>
+     <li>Обидчик одного члена семьи обижает всю семью.</li>
+     <li>Правосудие вершит только семья в полном составе.</li>   
+     <li>Члены семьи подчиняются главе семьи беспрекословно.</li></h4>
+     
+    <p> Предательство карается убийством предателя и всех его близких. Под предательством имеется в виду каждое слово ,произнесенное во время следствия.</p>
+
+                       <h2>НАЧАЛО КОНЦА</h2>
+<p>Мафия входит в каждый дом. Люди вступают в мафиозные семьи, убивают мирных жителей, ловко уходят от закона… и все это только ради забавы!</p>
+<h3>ВСЕ ЭТО – ИГРАЯ В «МАФИЮ»!</h3>
+<li>Главное правило - подозревай каждого.</li>
+Главное удовольствие – безнаказанное убийство.
+Главная хитрость  - бей своих , чтобы чужие боялись.
+<h3><li>МИРНЫЙ ЖИТЕЛЬ! КЕМ БЫ ТЫ НИ БЫЛ,ЧТО БЫ НИ ДЕЛАЛ – ПОМНИ:</li>
+<li>МИРОМ ПРАВИТ МАФИЯ!</li>
+<li>НЕ БОЙСЯ СВОЕЙ СУДЬБЫ:ОНА ВСЕ РАВНО СВЕРШИТСЯ.</li></h3>
+<p>Мафия – настольная психологическая игра на выживание. Ночью происходят убийства , днем игроки пытаются найти убийцу и покарать его. Увы, рука правосудия слишком часто разит невиновных. Умение скрывать свои чувства и обманывать , хитрость , изворотливость и беспринципность – эти качества помогут вам выиграть.</p>
+<h3>МАФИЯ:ВСЕ ПОД ПОДОЗРЕНИЕМ</h3>
+
+
+<div class="person"><a href="/characters">ПЕРСОНАЖИ</a></div>
+<div class="pravila"><a href="/gamerules">ПРАВИЛА ИГРЫ</a></div>
+ <form role="form" ng-submit="loginSubmit()">
+          <div class="form-group">
+            <label for="usernameInput"><%= __("Username") %></label>
+            <input type="text" class="form-control" id="usernameInput" placeholder="" ng-model="username">
+          </div>
+          <div class="form-group {{ loginError }}" ng-show="<%= passwordRequired %>">
+            <label for="passwordInput"><%= __("Server password") %></label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="" ng-model="password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg"><%= __("Enter!") %></button>
+        </form>
+      </div>
+    </div>
+<div class="container ng-cloak" style="margin-top:20px" ng-show="status == -1">
+      <div class="alert alert-danger" role="alert">
+        <h4><strong><%= __("Something went wrong...") %></strong></h4>
+        <p><%= __("Connection with server has been interrupted. Don't panic ! We (probably) are trying to solve the problem.") %></p>
+        <p><%= __("Please check that you are correctly linked to internet and that the server is running.") %></p>
+      </div>
+    </div>
+
+    <div class="container1" ng-show="status == 1" style="background-image: url(images/dark_dotted2.png)">
+      <h1><%= __("Lobby") %> <small><%= __("Welcome") %> {{ username }}</small></h1>
+      <% if(__conf.motd) { %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%- __conf.motd %>
+        </div>
+      </div>
+      <% } %>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default" ng-show="joinedRoom == null">
+            <div class="panel-heading"><%= __("Open new room") %></div>
+            <div class="panel-body">
+              <form role="form" ng-submit="createRoom()">
+                <div class="form-group">
+                  <label for="roomNameInput"><%= __("Name") %></label>
+                  <input type="text" class="form-control" id="roomNameInput" placeholder="" ng-model="roomName"/>
+                </div>
+                <div class="form-group">
+                  <label for="roomPasswordInput"><%= __("Password") %></label>
+                  <input type="text" class="form-control" id="roomPasswordInput" placeholder="<%= __("(no password)") %>" ng-model="roomPassword"/>
+                </div>
+                <!--<div class="form-group">
+                  <label for="roomTypeInput"><%= __("Type") %></label>
+                  <select id="roomTypeInput" ng-options="key as type.name for (key,type) in gametypes" class="form-control" ng-model="roomType">
+                  </select>
+                </div>-->
+                <button type="submit" class="btn btn-primary"><%= __("Create") %></button>
+                <span style="font-size:10px">
+                  <span class="glyphicon glyphicon-flash"></span> <%= __("Ping") %> : {{ping}} &nbsp;
+                  <span class="glyphicon glyphicon-user"></span>
+                  <ng-pluralize count="users.lobby" when="{'0': '<%= __("Nobody waiting") %>', 'one': '<%= __("One") %> <%= __n("person waiting", "people waiting", 1) %>', 'other': '{} <%= __n("person waiting", "people waiting", 2) %>'}"></ng-pluralize>
+                  <%= __("and") %>
+                  <ng-pluralize count="users.playing" when="{'0': '<%= __("nobody playing") %>', 'one': '<%= __("one") %> <%= __n("person playing", "people playing", 1) %>', 'other': '{} <%= __n("person playing", "people playing", 2) %>'}"></ng-pluralize>
+                </span>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel panel-default" ng-show="joinedRoom != null">
+            <div class="panel-heading">
+              <%= __("Room parameters") %>
+              <button class="btn btn-xs btn-link" ng-click="showMasterParams = !showMasterParams;">
+                <%= __("Hide") %>/<%= __("Show") %>
+              </button>
+            </div>
+            <div class="panel-body" ng-show="showMasterParams">
+
+              <div class="alert alert-info" role="alert" ng-if="roomHelpMessage">
+                {{ roomHelpMessage }}
+              </div>
+
+              <form class="form-horizontal">
+                <div class="form-group parameters-group">
+                  <label class="col-sm-7 control-label"> <%= __("Seats") %></label>
+                  <div class="col-sm-5">
+                    {{ joinedRoom.size }} / {{ joinedRoom.gameplay.maxPlayers }}
+                    <button class="btn btn-default btn-xs input-sm" ng-click="incSize(-1)" ng-disabled="!isMaster">
+                      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default btn-xs input-sm" ng-click="incSize(1)" ng-disabled="!isMaster">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group parameters-group" ng-repeat="parameter in joinedRoom.gameplay.parameters">
+                  <label class="col-sm-7 control-label">
+                    {{ parameter.name }} &nbsp;
+                    <span ng-if="parameter.help" class="glyphicon glyphicon glyphicon-info-sign link" ng-click="printHelp(parameter.help)"></span>
+                  </label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control input-sm" ng-model="localParams[$index]" ng-change="changeParameter(joinedRoom.gameplay.parameters[$index].name, localParams[$index]);" ng-disabled="!isMaster" ng-hide="parameter.isBoolean"/>
+                    <input type="checkbox" class="form-control input-sm" ng-model="localParams[$index]" ng-change="changeParameter(joinedRoom.gameplay.parameters[$index].name, localParams[$index]);" ng-disabled="!isMaster" ng-show="parameter.isBoolean"/>
+                  </div>
+                </div>
+              </form>
+
+              <br />
+              <button class="btn btn-danger" ng-click="leaveRoom()"><%= __("Leave") %></button>
+              <button class="btn btn-success" ng-if="isMaster" ng-click="startRoom()" ng-disabled="joinedRoom.players.length < joinedRoom.size"><b><%= __("Start!") %></b></button>
+              <span class="glyphicon glyphicon glyphicon-info-sign link" ng-if="isMaster" ng-click='printHelp("<%= __("You have to fill the room with several players before starting it.") %>")'></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+
+          <div class="alert alert-info" role="alert" ng-show="rooms.length == 0">
+            <%= __("No room is currently available :(") %>
+          </div>
+
+          <div class="list-group">
+            <a href="#" class="list-group-item" ng-repeat="room in rooms" ng-click="changeSelectedRoom(room.id)" ng-dblclick="joinRoom(room.id)">
+              <div class="row">
+                <div class="col-xs-4">
+                  <span class="glyphicon glyphicon-lock" ng-show="room.password"></span>
+                  <b>{{ room.name }}</b>
+                </div>
+                <div class="col-xs-2"><i><%= __("By") %> {{ room.players[0].username }}</i></div>
+                <div class="col-xs-5">{{ room.gameplay.name }}</div>
+                <div class="col-xs-1"><span class="badge">{{ room.players.length }}/{{ room.size }}</span></div>
+              </div>
+              <div class="row" ng-show="room.id == selectedRoom">
+                <div class="col-xs-4">
+                  <form class="form-inline" ng-show="joinedRoom == null">
+                    <div class="form-group" ng-class="{'has-error': invalidRoomPassword}">
+                      <input class="form-control input-sm" type="text" ng-model="password" ng-show="room.password" placeholder="<%= __("Password") %>"/>
+                      <button class="btn btn-primary btn-xs" ng-click="joinRoom(room.id, password)"><%= __("Join!") %></button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-xs-8">
+                  <i><%= __n("Player", "Players", 2) %> : <span ng-repeat="player in room.players">{{ player.username }} </span></i><br />
+                  {{ room.gameplay.description }}
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row" ng-show="joinedRoom != null">
+        <div class="col-sm-5 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading"><%= __n("Player", "Players", 2) %></div>
+            <div class="panel-body">
+              <ul class="list-unstyled">
+                <li ng-repeat="player in joinedRoom.players" class="row">
+                  <div class="col-xs-2">
+                    <button class="btn btn-xs btn-danger pull-right" ng-if="isMaster && player.username !== username" ng-click="kickPlayer(player.username)">
+                      <span class="glyphicon glyphicon-log-out"></span>
+                    </button>
+                  </div>
+                  <div class="col-xs-10">
+                    <strong>{{ player.username }}</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7 col-md-9">
+          <pre id="preChat" ng-bind-html="preChat" scroll-glue class="resizable"></pre>
+          <input type="text" class="form-control" placeholder="<%= __("Type a message here...") %>" ng-model="chatMessage" ng-keydown="keyChat($event, true)"/>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="container1 ng-cloak" style="margin-top:20px; height: 90vh;" ng-show="status == 2">
+
+      <div class="col-md-3">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <button class="btn btn-default btn-xs" style="float: right" ng-click="toggleMute()">
+                <span class="glyphicon glyphicon-volume-up"  ng-show="mute !== 'on'"></span>
+                <span class="glyphicon glyphicon-volume-off" ng-show="mute === 'on'"></span>
+              </button>
+              <button class="btn btn-xs btn-danger" ng-click="leaveRoom()">
+                <%= __("Leave") %>
+              </button>
+              {{ joinedRoom.name }}
+            </h3>
+          </div>
+          <div class="panel-body" ng-bind-html="gameInfo"></div>
+          <div class="container-fluid text-center">
+            <h4>{{ remainingTime.min }} : {{ remainingTime.sec }}</h4>
+
+            <div ng-repeat="(name, action) in actions" ng-switch="action.type">
+              <div ng-switch-when="button" style="margin-bottom:10px;">
+                <button class="btn btn-primary btn-sm" ng-click="executeAction(name)">{{ action.options.submit }}</button>
+              </div>
+              <div ng-switch-when="select" style="margin-bottom:10px;">
+                <form class="form-inline" ng-submit="executeAction(name)">
+                  <select ng-options="value for value in action.options.safeChoices" class="form-control input-sm" ng-model="actionsValues[name]"></select>
+                  <input type="submit" class="btn btn-primary btn-sm" value="{{ action.options.submit }}"/>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="container-fluid">
+              <div class="row" ng-repeat="player in joinedRoom.players" ng-bind-html="getPlayerInfos(player)"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-9" style="height:100%">
+        <div class="well well-sm" style="height:80%; overflow:auto;" ng-bind-html="gameChat" scroll-glue></div>
+
+        <div class="container-fluid" ng-show="selectedChannel">
+          <div class="col-md-9 col-lg-10">
+            <input type="text" class="form-control" placeholder="<%= __("Type a message here...") %>" ng-model="chatMessage" ng-keydown="keyChat($event)"/>
+          </div>
+          <div class="col-md-3 col-lg-2">
+            <select ng-model="selectedChannel" class="form-control" ng-options="v.id as v.n for v in channels" ng-change="manualChannelChange = true"></select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-sanitize.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket.min.js"></script>
+    <script src="js/glue.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/controller.js"></script>
+  </body>
+</html>

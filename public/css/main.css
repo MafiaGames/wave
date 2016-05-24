@@ -1,0 +1,103 @@
+body{
+	background-image:url(images/fon1.jpg);
+	background-attachment: fixed;
+	background-size: contain;
+	
+}
+#preChat, #prePlayers {
+  height: 200px;
+}
+
+.resizable {
+  resize: vertical;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.parameters-group {
+  margin-bottom: 5px !important;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.container{
+	width: 1000px;
+	height: 1500px;
+	background:url(images/dark_dotted2.png );
+	margin:100px auto;
+	opacity: 0.9;
+	border: 3px solid black ;
+	position: relative;
+	color: white;
+
+	font-family: Arial;
+	font-size: 14px;
+	font-style: italic;
+	text-align: center;
+	text-shadow: 0 0 10px red ;
+	
+}
+
+.container1{
+opacity: 0.9;
+margin:100px auto;
+font-family: Arial;
+	font-size: 14px;
+	font-style: italic;
+	text-align: center;
+	text-shadow: 0 0 10px red ;
+	color: white;
+
+}
+.register  {
+	
+	background:url(iamges/17.jpg);
+	background-size: cover;
+	margin:100px auto;
+	margin-left: 100px;
+	width: 800px;
+	cursor: pointer;
+	border-radius: 100px ;
+}
+.register a{
+	font: 2em Arial;
+	color: white;	
+	height: 100px;
+	line-height: 100px;
+}
+.person{
+background:url(images/subtle_carbon.png);
+	/*ackground-size: cover;*/
+	margin:100px auto;
+	margin-left: 100px;
+	width: 800px;
+	opacity: 1;
+	cursor: pointer;
+	border-radius: 100px;
+}
+.person a{
+    font: 2em Arial;
+	color: white;	
+	height: 100px;
+	line-height: 100px;
+}
+
+.pravila{
+background:url(images/subtle_carbon.png);
+	margin:100px auto;
+	margin-left: 100px;
+	width: 800px;
+	opacity: 0.5;
+	bottom: 50px;
+	cursor: pointer;
+	border-radius: 100px;
+}
+.pravila a{
+    font: 2em Arial;
+	color: white;	
+	height: 100px;
+	line-height: 100px;
+}

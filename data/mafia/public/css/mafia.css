@@ -1,0 +1,54 @@
+.mafia-dead-chat {
+    color: grey;
+}
+
+.mafia-mafia-chat {
+  color: red;
+}
+
+.mafia-gamemaster-chat {
+  font-weight: bold;
+}
+
+.mafia-private-chat {
+  color: blue;
+}
+
+.mafia-vote {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.mafia-day-transition {
+  margin-top: 10px;
+  font-size: 25px;
+  border-bottom: 1px dashed grey;
+}
+
+.mafia-stage-action {
+  padding: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  text-decoration: italic;
+}
+
+.mafia-role-action {
+  background-color: #337AB7;
+  color: white;
+}
+
+.mafia-mafia-action {
+  background-color: #D9534F;
+  color: white;
+}
+
+.mafia-dead-announce {
+  font-variant: small-caps;
+  font-weight: bold;
+  text-decoration: italic;
+}
+
+.mafia-small-padding {
+  padding-left: 5px;
+  padding-right: 0px;
+}
