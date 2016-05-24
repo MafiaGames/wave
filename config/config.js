@@ -5,7 +5,7 @@
 
 module.exports = {
 
-  port: 3000,                 // open party listenning port (http)
+  port: process.env.PORT,                 // open party listenning port (http)
   bind: "0.0.0.0",            // bound ip - use 127.0.0.1 for localhost use only
   sessionSecret: "changeMe",  // not used yet, but you should change it for security reasons
   password: null,             // change it to set a server password for user access
