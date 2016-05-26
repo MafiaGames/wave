@@ -10,8 +10,8 @@ module.exports = function() {
 
   return {
 
-    name: "Godfather",
-    desc: "You must kill all the villagers innocent, you appear as an innocent in the eyes of Detective ...",
+    name: "Дон",
+    desc: "Вы должны убивать невинных жителей, вы будете невиновным перед Детективом ...",
     side: "mafia",
 
     actions: {

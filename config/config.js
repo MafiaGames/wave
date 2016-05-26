@@ -14,8 +14,8 @@ module.exports = {
   maxRooms: 10,               // maximum number of rooms allowed
   maxPlayers: 100,            // maximum number of connected players allowed
 
-  locales: ["en","fr", "es"],
-  defaultLocale: "en",
+  locales: ["en","fr", "es","ru"],
+  defaultLocale: "ru",
 
   name: "",                   // custom server name
   welcomeMsg: "",             // shown on "home" page

@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Rescuer",
-    desc: "You can save someone whom the Mafia, including yourself. However, you have <strong> only one opportunity to rescue </ strong>. You must help the villagers to repel the Mafia ...",
+    name: "Спасатель",
+    desc: "Вы можете спасти кого то из жертв мафии, включая себя. Помните у вас <strong> только один шанс </ strong> спасти. Вы должны помочь жителям свергнуть Мафию ...",
     side: "village",
     night: true,
     afterMafia: true,
@@ -30,7 +30,7 @@ module.exports = function() {
           victim.player.pendingDeath = [];
           player.rescuerHasPlayed = true;
           player.sendAvailableActions();
-          player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" was saved from a terrible death</span>");
+          player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" был спасен от ужасной смерти</span>");
         }
       }
     },

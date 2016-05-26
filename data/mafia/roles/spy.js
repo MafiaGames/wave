@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Spy",
-    desc: "Every night, you can directly spy on the Mafia to know what will be their victim ... As you make good use of this information to help the village!",
+    name: "Шпион",
+    desc: "Каждуюночь вы можете точно узнать жертву Мафии ... Испльзуйте эту информацию чтобы помочь жителям!",
     side: "village",
     night: true,
 
@@ -11,9 +11,9 @@ module.exports = function() {
     channels: {},
     beforeAll: function(room) {
       room.gameplay.events.on("mafiaVote", function(victim) {
-        var announce = "No one has been targeted by the Mafia tonight";
+        var announce = "Сегодня никто не был выбран Мафией";
         if(victim) {
-          announce = victim.username + " was targeted by the Mafia tonight";
+          announce = victim.username + " Сегодня был выбран Мафией";
         }
         room.players.forEach(function(p) {
           if(p.player.roles.spy && !p.player.roles.dead){

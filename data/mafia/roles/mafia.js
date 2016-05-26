@@ -4,8 +4,8 @@ module.exports = function() {
 
   return {
 
-    name: "Mafia",
-    desc: "You must kill all the villagers innocent ...",
+    name: "Мафиа",
+    desc: "Вы должны убить всех невинных жителей ...",
     side: "mafia",
 
     actions: {

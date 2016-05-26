@@ -2,19 +2,19 @@ module.exports = {
 
   nb2word: function(nb) {
     switch(nb) {
-      case 0: return "zero";
-      case 1: return "one";
-      case 2: return "two";
-      case 3: return "three";
-      case 4: return "four";
-      case 5: return "five";
-      case 6: return "six";
-      case 7: return "seven";
-      case 8: return "eight";
-      case 9: return "nine";
-      case 10: return "ten";
-      case 11: return "eleven";
-      case 12: return "twelve";
+      case 0: return "ноль";
+      case 1: return "один";
+      case 2: return "два";
+      case 3: return "три";
+      case 4: return "четыре";
+      case 5: return "пять";
+      case 6: return "шесть";
+      case 7: return "семь";
+      case 8: return "восемь";
+      case 9: return "девять";
+      case 10: return "десять";
+      case 11: return "одиннадцать";
+      case 12: return "двенадцать";
       default: return ""+nb;
     }
   },

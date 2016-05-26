@@ -4,7 +4,7 @@ module.exports = function() {
 
   return {
 
-    name: "Villager",
+    name: "Житель",
     side: "village",
 
     actions: {
@@ -33,7 +33,7 @@ module.exports = function() {
       }
     },
     channels: {
-      village: {r: true, w: false, n: "Village", p: 20}
+      village: {r: true, w: false, n: "Город", p: 20}
     }
 
   };

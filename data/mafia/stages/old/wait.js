@@ -10,7 +10,7 @@ module.exports = function() {
       }
 
       room.gameplay.resetPlayerInfo();
-      room.message("<span class='glyphicon glyphicon-hourglass'></span> <i>Ожидание Game Master...</i>");
+      room.message("<span class='glyphicon glyphicon-hourglass'></span> <i>En attente du Maître du Jeu...</i>");
 
       room.players.forEach(function(p) {
         if(!p.player.pendingDeath || p.player.pendingDeath.length === 0)
@@ -19,7 +19,7 @@ module.exports = function() {
           p.push(n.type);
           return p;
         }, []).join(", ");
-        room.gameplay.gamemaster.message("→ " + p.username + " " + p.player.canonicalRole + "умрет на рассвете : " + deathReasons);
+        room.gameplay.gamemaster.message("→ " + p.username + " " + p.player.canonicalRole + " va mourir à l'aube : " + deathReasons);
       });
 
       callback(null, -1);

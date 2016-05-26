@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Advisor",
-    desc: "You can vote every day to prevent the <strong> a villager </ strong> different with your job at City Hall.",
+    name: "Эдвайзер",
+    desc: "Вы можете запрещать голосовать <strong> жителю </ strong> в зависимости вашей работы в мэрии.",
     side: "village",
     night: true,
 
@@ -41,7 +41,7 @@ module.exports = function() {
           player.councilmanHasPlayed = true;
           player.councilmanLastChoice = choice;
           player.sendAvailableActions();
-          player.room.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-exclamation-sign'></span> A counselor has banned voting " + choice.username + " four " + funReasons[GET_RANDOM(0, funReasons.length-1)] + "</span>");
+          player.room.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-exclamation-sign'></span> Консультант запретил голосовать " + choice.username + " по причине " + funReasons[GET_RANDOM(0, funReasons.length-1)] + "</span>");
         }
       }
     },

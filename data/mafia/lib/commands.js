@@ -3,7 +3,7 @@ var commands = {
     nb: 0,
     fn: function(player) {
       player.room.gameplay.disableAutoVictory = !player.room.gameplay.disableAutoVictory;
-      return "Disabling automatic victory : " + (player.room.gameplay.disableAutoVictory ? "OUI" : "NON");
+      return "Запретить автовыйгрыш : " + (player.room.gameplay.disableAutoVictory ? "OUI" : "NON");
     }
   },
   help: {
@@ -17,10 +17,10 @@ var commands = {
     fn: function(player, args) {
       var target = player.room.resolveUsername(args[0]);
       if(!target)
-        return "The player ["+args[0]+"] does not exist.";
+        return "Игрок ["+args[0]+"] не существует.";
 
       if(!args[1])
-        args[1] = "was thunderstruck.";
+        args[1] = "был ошеломлён.";
 
       player.room.message("<span class='mafia-dead-announce'>"+ target.username + " " + target.player.canonicalRole + " " + args[1] +"</span>");
       player.room.gameplay.kill(target.player);
@@ -48,11 +48,11 @@ var commands = {
     fn: function(player, args) {
       var target = player.room.resolveUsername(args[0]);
       if(!target)
-        return "The player  ["+args[0]+"] doesn't exist.";
+        return "Игрок  ["+args[0]+"] не существует.";
       if(player.room.currentStage === "vote" || !target.player.pendingDeath)
-        return "Please do this at night.";
+        return "Это можно делать только ночью.";
       target.player.pendingDeath.push({type : "gamemaster"});
-      return args[0] + " will not wake up the next night.";
+      return args[0] + " не может проснуться ночью.";
     }
   },
   play: {
@@ -75,7 +75,7 @@ var commands = {
     fn: function(player, args) {
       var target = player.room.resolveUsername(args[0]);
       if(!target)
-        return "The player ["+target+"] doesn't exist.";
+        return "Игрок ["+target+"] не существует.";
 
       var type = "default";
       if(args[2] === "b")
@@ -86,7 +86,7 @@ var commands = {
         type = "warning";
 
       target.player.canonicalRole = "<span class='label label-"+type+"'>" + args[1] + "</span>";
-      target.player.emit("setGameInfo", "You are "+ target.player.canonicalRole +". This role has been defined by the Master of the Game.");
+      target.player.emit("setGameInfo", "Вы "+ target.player.canonicalRole +". Ваша роль была определена Master of the Game.");
       return target.username + " is now " + target.player.canonicalRole;
     }
   },
@@ -95,10 +95,10 @@ var commands = {
     fn: function(player, args) {
       var target = player.room.resolveUsername(args[0]);
       if(!target)
-        return "The player ["+args[0]+"] doesn't exist.";
+        return "Игрок ["+args[0]+"] не существует.";
 
       target.player.pendingDeath = [];
-      return args[0] + " was saved.";
+      return args[0] + " спасен.";
     }
   },
   stop: {
@@ -133,14 +133,14 @@ module.exports = {
     var action = this.parseAction(message);
 
     if(!commands[action]) {
-      player.message("The command ["+action+"] doesn't exist.");
+      player.message("Команды ["+action+"] не существует.");
       return true; // wrong command
     }
 
     var args   = this.parseArgs(message.substr(action.length + 2));
 
     if(commands[action].nb && commands[action].nb > args.length) {
-      player.message("The command ["+action+"] requires at least "+commands[action].nb+" parameters you gave in "+args.length+".");
+      player.message("Эта ["+action+"] команда требует как минимум "+commands[action].nb+" переданные вами "+args.length+".");
       return true; // wrong args
     }
 

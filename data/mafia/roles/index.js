@@ -31,7 +31,7 @@ module.exports = {
         return;
 
       if(p.value < 0)
-        throw new Error("Invalid number for the role " + p.role + ".");
+        throw new Error("Не действительный номер роли " + p.role + ".");
 
       if((p.role === "mafia" || p.role === "godfather") && p.value)
         mafiaOk = true;
@@ -41,10 +41,10 @@ module.exports = {
     });
 
     if(!mafiaOk)
-      throw new Error("You must have at least a mafioso in Part.");
+      throw new Error("В деревне как минимум должна быть одна Мафия.");
 
     if(sum > room.players.length - playerShift)
-      throw new Error("Too many roles over the number of players.");
+      throw new Error("Ролей много чем игроков.");
 
     // Suffle player list
     var o = [];
@@ -60,7 +60,7 @@ module.exports = {
       p.player.setChannel("general", null); // remove general channel (unused in Mafia, but proposed by Openparty by default)
       p.player.setRole("villager", require("./villager")()); // everyone is a villager, except gamemaster
       p.player.canonicalRole = "<span class='label label-default'>Villager</span>";
-      p.player.emit("setGameInfo", "Vous êtes "+ p.player.canonicalRole +". You have to eliminate members of the Mafia, but you have no specific power.");
+      p.player.emit("setGameInfo", "Вы "+ p.player.canonicalRole +". Вы должны устранить мафию, но у вас нету никаких способностей.");
     });
 
     if(room.gameplay.gamemasterMode) {
@@ -68,7 +68,7 @@ module.exports = {
       gamemaster.setChannel("general", null);
       gamemaster.setRole("gamemaster", require("./gamemaster")(room));
       gamemaster.canonicalRole = "<span class='label label-success'>Game Master</span>";
-      gamemaster.emit("setGameInfo", "You are <strong> Game Master </ strong>. Type / help for help about commands. Good luck;)");
+      gamemaster.emit("setGameInfo", "Вы <strong> Game Master </ strong>. Наберите / help для помощи с командами. Удачи;)");
     }
 
     // Affect roles
@@ -87,7 +87,7 @@ module.exports = {
           c = "danger";
 
         room.players[j].player.canonicalRole = "<span class='label label-"+c+"'>" + globalSample.name + "</span>";
-        room.players[j].player.emit("setGameInfo", "You are "+ room.players[j].player.canonicalRole +". " + globalSample.desc);
+        room.players[j].player.emit("setGameInfo", "Вы "+ room.players[j].player.canonicalRole +". " + globalSample.desc);
       }
     }
 
@@ -105,7 +105,7 @@ module.exports = {
 
     room.gameplay.kill = function(player) {
       player.setRole("dead", require("./dead")());
-      player.socket.emit("setGameInfo", "You are <strong> ✝ eliminated </ strong>. You can leave the village, or dialogue with the lost souls of the village ...");
+      player.socket.emit("setGameInfo", "Вы были  <strong> ✝ устранены </ strong>. Вы можете уйти с деревни или общаться с умершими душами ...");
 
       // Disable channels
       player.setChannel("village", {r: true, w: false});

@@ -10,7 +10,7 @@ module.exports = function() {
         p.player.pendingDeath = [];
       });
 
-      room.message("<div class='mafia-day-transition'><span class='glyphicon glyphicon-fire'></span> Наступила ночь</div>");
+      room.message("<div class='mafia-day-transition'><span class='glyphicon glyphicon-fire'></span> La nuit tombe sur le village</div>");
 
       // Fetch composition
 
@@ -37,16 +37,16 @@ module.exports = function() {
 
       // Mafia announce
 
-      var mafiaStr = mafiaNb > 1 ? "Среди членов Мафии <u>" + mafiaNb + " membres</u>" : "<u>Единственный член</u> Мафии";
+      var mafiaStr = mafiaNb > 1 ? "<u>les " + mafiaNb + " membres</u> de la Mafia passent" : "<u>le seul membre</u> de la Mafia passe";
       if(mafiaNb)
-        room.message("<span class='mafia-dead-announce'>Пока жители спят, " + mafiaStr + " действуют.</span>");
+        room.message("<span class='mafia-dead-announce'>Tandis que les villageois s'endorment, " + mafiaStr + " à l'action.</span>");
 
       // Special announce
 
       var specialStr = french.join(roles, "<u>", "</u>");
       var specialStrEnd = speNb > 1 ? "opèrent" : "opère";
       if(specialStr)
-        room.message("<span class='mafia-dead-announce'>Между тем, " + specialStr + " " + specialStrEnd + " является секретом...</span>");
+        room.message("<span class='mafia-dead-announce'>Pendant ce temps, " + specialStr + " " + specialStrEnd + " en secret...</span>");
 
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
@@ -59,9 +59,9 @@ module.exports = function() {
       room.message(""); // empty line
       if(victim) {
         victim.pendingDeath.push({type: "mafia"});
-        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span>Мафия решили ликвидировать " + victim.username + "</span>");
+        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> La Mafia a décidé d'éliminer " + victim.username + "</span>");
       } else {
-        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> Мафиози не были единогласны и не убили человека</span>");
+        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> Les mafiosi ne se mettent pas d'accord et n'éliminent personne</span>");
       }
       room.gameplay.events.emit("mafiaVote", victim);
       room.closeChannel("mafia", "mafia");

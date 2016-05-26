@@ -7,12 +7,12 @@ module.exports = {
         return player.room.currentStage === stage && (!player.roles || !player.roles.dead);
       },
       type: "select",
-      options: require("./actions").getPlayerSelectOptions("Voter"),
+      options: require("./actions").getPlayerSelectOptions("Голосовать"),
       execute: function(player, choice) {
 
         var sendPlayerInfo = player.room.gameplay.sendPlayerInfo.bind(player.room.gameplay);
 
-        if(choice === "(Person)") {
+        if(choice === "(Человек)") {
           choice = null;
         } else {
           choice = player.room.resolveUsername(choice);
@@ -33,13 +33,13 @@ module.exports = {
         }
 
         if(choice) {
-          player.room.message(role, "<span class='mafia-vote'><span class='glyphicon glyphicon-bullhorn'></span> &nbsp; <strong>" + player.username + "</strong> vote against <strong>" + choice.username + "</strong></span>");
+          player.room.message(role, "<span class='mafia-vote'><span class='glyphicon glyphicon-bullhorn'></span> &nbsp; <strong>" + player.username + "</strong> проголосовал против <strong>" + choice.username + "</strong></span>");
           if(!choice.nbVotes)
             choice.nbVotes = 0;
           choice.nbVotes++;
           sendPlayerInfo(choice.socket);
         } else if(previousChoice) {
-          player.room.message(role, "<span class='mafia-vote'><span class='glyphicon glyphicon-bullhorn'></span> &nbsp; <strong>" + player.username + "</strong> withdraw his vote</strong></span>");
+          player.room.message(role, "<span class='mafia-vote'><span class='glyphicon glyphicon-bullhorn'></span> &nbsp; <strong>" + player.username + "</strong> перголосовал </strong></span>");
         }
 
         player.choice = choice;

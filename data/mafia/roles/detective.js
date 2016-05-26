@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Detective",
-    desc: "You can discover the camp of a player <strong> every night </ strong>: innocent or mafioso. You must help the villagers to repel the Mafia ...",
+    name: "Детектив",
+    desc: "Вы можете изучать лагеря <strong> каждую ночь </ strong>: жертв и мафии. Вы должны помочь жителям свергнуть Мафию ...",
     side: "village",
     night: true,
 

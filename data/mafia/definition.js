@@ -21,7 +21,7 @@ module.exports = function() {
 
   this.name        = "Mafia";
   this.version     = "0.1.0";
-  this.description = "An online version of the game Dimitri Davidoff - v" + this.version;
+  this.description = "Онлайн версия популярной игры v" + this.version;
   this.minPlayers  = 3;
   this.maxPlayers  = 40;
   this.opVersion   = ">0.1.2";
@@ -51,7 +51,7 @@ module.exports = function() {
     // TODO See #16
     setTimeout(function() {
 
-      room.message("<strong><i>You are in the village of Salem. Mafia prowl, and seriously threatens the lives of the villagers ...</i></strong>");
+      room.message("<strong><i>Вы находитесь в Городе Грехов. Мафия рыскает, и серьезно угрожает жизни жителей деревни ...</i></strong>");
 
       if(!room.gameplay.gamemasterMode)
         room.nextStage("mafia");
@@ -66,73 +66,73 @@ module.exports = function() {
 
   this.parameters = [
   {
-    name: "Number of Mafioso (mafia)",
+    name: "Количество мафии (mafia)",
     type: Number,
     value: 1,
-    help: "Mafiosi aim to take control of the village. Together they decide to eliminate a citizen per night.",
+    help: "Мафиози стремятся взять под свой контроль деревни. Вместе они решают ликвидировать гражданина за ночь.",
     role: "mafia"
   },
   {
-    name: "Number of Sponsors (mafia)",
+    name: "Количество спонсоров (mafia)",
     type: Number,
     value: 0,
-    help: "A sponsor is part of the mafia camp but appears as an innocent in the eyes of the detective.",
+    help: "Спонсор является частью мафиозного лагеря, но выглядит как невинная в глазах детектива.",
     role: "godfather"
   },
   {
-    name: "Number of Terrorists (mafia)",
+    name: "Количество террористов (mafia)",
     type: Number,
     value: 0,
-    help: "A terrorist may commit a suicide bombing overnight of his choice. He will die with the target of choice. The doctor does not protect against the attack; but stop a terrorist act if it protects it during the night.",
+    help: "Террорист может совершить самоубийцы за одну ночь по своему выбору. Он умрет с целью выбора. Врач не защищает от нападения; но остановить террористического акта, если он защищает ее в течение ночи.",
     role: "terrorist"
   },
   {
-    name: "Number of Doctors",
+    name: "Количество врачей",
     type: Number,
     value: 0,
-    help: "A doctor can protect a citizen per night if desired. If life is threatened protected, it will survive anyway.",
+    help: "Врач может защитить гражданина за ночь, если это необходимо. Если жизнь находится под угрозой защищена, она выживет в любом случае.",
     role: "doctor"
   },
   {
-    name: "Number of Lifeguards",
+    name: "Количество Спасателей",
     type: Number,
     value: 0,
-    help: "A rescuer can save a victim of the Mafia. It is not advisable to put several rescuers in the composition, although it is possible.",
+    help: "Спасатель может спасти жертву мафии. Не рекомендуется ставить несколько спасателей в составе, хотя вполне возможно,.",
     role: "rescuer"
   },
   {
-    name: "Number of Vigils",
+    name: "Количество дежурных",
     type: Number,
     value: 0,
-    help: "A vigil can murder a people overnight of his choice. However the side of honest citizens.",
+    help: "Дежурных может убить людей  по своему выбору. Однако сторона честных граждан.",
     role: "vigilant"
   },
   {
-    name: "Number of Detectives",
+    name: "Количество Детективы",
     type: Number,
     value: 0,
-    help: "A detective can discover each night, the camp of a player (or innocent mafioso).",
+    help: "Детектив может обнаружить каждую ночь, лагерь игрока (или невинную мафиозо).",
     role: "detective"
   },
   {
-    name: "Number of Spies",
+    name: "Количество шпионов",
     type: Number,
     value: 0,
-    help: "A spy can know the victim of the Mafia every night undetected.",
+    help: "Шпион может знать жертву мафии каждую ночь незамеченным.",
     role: "spy"
   },
   {
-    name: "Number of Consultants",
+    name: "Количество консультантов",
     type: Number,
     value: 0,
-    help: "A counselor can every night prohibit voting a villager.",
+    help: "Консультант может каждую ночь запретить голосование  жителя.",
     role: "councilman"
   },
   {
-    name: "Fashion Game Master",
+    name: "Game Master",
     type: Boolean,
     value: false,
-    help: "When this mode is active, the creator of the game becomes GAME LEADER. It has additional powers to lead the party at will: weather modification, additions, custom roles, private discussions with players ...",
+    help: "Когда этот режим активен, создатель игры становится GAME LEADER. Она имеет дополнительные полномочия, чтобы возглавить партию по собственному желанию: изменение погоды, дополнения, пользовательские роли, частные беседы с игроками ...",
     gamemasterMode: true
   }
   ];
@@ -154,12 +154,12 @@ module.exports = function() {
         room.endStage();
 
       room.players.forEach(function(p) { // disable gamemaster communication
-        p.player.setChannel("player-" + player.username, {r: false, w: false});
+        p.player.setChannel("Игрок-" + player.username, {r: false, w: false});
       });
     }
 
     if(player.canonicalRole)
-      this.room.message("<strong><i>" + player.username + " " + player.canonicalRole + " escaped.</i></strong>");
+      this.room.message("<strong><i>" + player.username + " " + player.canonicalRole + " вышел.</i></strong>");
 
     // Update vote (if any)
     if(player.choice) {

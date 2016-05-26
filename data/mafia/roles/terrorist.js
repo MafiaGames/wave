@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Terrorist",
-    desc: "You can kill yourself with the person of your choice during any night. <b> You do not know the members of the Mafia </ b>, but they know you, and you need help with your suicide. <Strong> Note: </ strong> if the doctor protects you can not use your power.",
+    name: "Террорист",
+    desc: "Вы удиваете вместе с собой с вашей жертвы. <b> Вы не знаете членов Мафии</ b>, но они знают вас, и вы должны помочь сл свлим суицидом. <Strong> Примечание: </ strong> Если доктор вас спас, то вы не можете использовать свою силу.",
     side: "mafia",
     night: true,
 
@@ -22,7 +22,7 @@ module.exports = function() {
 
           player.pendingDeath.push({type: "terrorist", target: choice.player});
           player.sendAvailableActions();
-          player.message("<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-flash'></span> Boom! You have decided to make  "+ choice.username +" in your death</span>");
+          player.message("<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-flash'></span> БУМ! Вы решили умереть вместе с  "+ choice.username +"</span>");
 
         }
       }
@@ -39,7 +39,7 @@ module.exports = function() {
               // Override default death message
               d.target.deathMessage = false;
               p.player.deathMessage = "✝ " + p.username + " " + p.player.canonicalRole +
-                " decided to blow himself by driving "  +
+                " решил взорвать себя с "  +
                 d.target.username + " " + d.target.canonicalRole +
                 "..." ;
             }
@@ -50,7 +50,7 @@ module.exports = function() {
       room.gameplay.events.on("mafiaTurn", function() {
         room.players.forEach(function(p) {
           if(p.player.roles.terrorist && !p.player.roles.dead)
-            room.message("mafia", "<span class='mafia-mafia-chat'>You can count on the help of " + p.username + " " + p.player.canonicalRole + "</span>");
+            room.message("mafia", "<span class='mafia-mafia-chat'>Вы можете расчитывать на помощь  " + p.username + " " + p.player.canonicalRole + "</span>");
         });
       });
     }

@@ -22,13 +22,13 @@ module.exports = {
       var nbVillagers = this.nbAlive("villager") - nbMafiosi;
 
       if(nbVillagers === 0 && nbMafiosi === 0) {
-        this.endGame("<span class='glyphicon glyphicon-star'></span> The village is decimated, there <strong> are not</strong> alive.");
+        this.endGame("<span class='glyphicon glyphicon-star'></span> Деревня истреблена <strong> нет никого</strong> в живых.");
         return true;
       } else if (nbMafiosi === 0) {
-        this.endGame("<span class='glyphicon glyphicon-star'></span> Citizens have successfully fought the Mafia !");
+        this.endGame("<span class='glyphicon glyphicon-star'></span> Жители победили Мафию !");
         return true;
       } else if(nbVillagers <= 1) {
-        this.endGame("<span class='glyphicon glyphicon-star'></span> The Mafia has managed to control the village !");
+        this.endGame("<span class='glyphicon glyphicon-star'></span> The Мафия контролтирует деревню !");
         return true;
       }
 

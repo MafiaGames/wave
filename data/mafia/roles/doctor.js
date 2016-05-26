@@ -2,8 +2,8 @@ module.exports = function() {
 
   return {
 
-    name: "Doctor",
-    desc: "You can protect someone <strong> every night </ strong>, except yourself. You must help the villagers to repel the Mafia ...",
+    name: "Врач",
+    desc: "Вы можете спасти кого то <strong>в каждую ночь </ strong>, включая себя. Вы должны помочь жителям свергнуть Мафию ...",
     side: "village",
     night: true,
 
@@ -22,7 +22,7 @@ module.exports = function() {
           player.docHasPlayed = true;
           choice.player.isSafeByDoc  = true;
           player.sendAvailableActions();
-          player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ choice.username +" is protected from death for tonight</span>");
+          player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ choice.username +" спасен сегодня ночью</span>");
 
         }
       }

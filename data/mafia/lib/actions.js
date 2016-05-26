@@ -9,7 +9,7 @@ module.exports = {
 
     return {
       choices: function(room, player) {
-        var out = ["(Person)"];
+        var out = ["(Человек)"];
         room.players.forEach(function(p) {
           if(!p.player.roles.dead && !p.player.roles.gamemaster) {
             out.push(p.username);

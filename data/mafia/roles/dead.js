@@ -4,7 +4,7 @@ module.exports = function() {
 
     actions: {},
     channels: {
-      dead: {r: true, w: true, n: "Graveyard"}
+      dead: {r: true, w: true, n: "Кладбище"}
     }
 
   };
